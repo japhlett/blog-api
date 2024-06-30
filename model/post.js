@@ -1,7 +1,7 @@
 import { Schema,model } from "mongoose";
 import { toJSON } from "@reis/mongoose-to-json";
 
-const postsSchema = new Schema({
+const postSchema = new Schema({
     title:{type:String, unique:true, required:true},
     author:{type:String,required:true},
     content:{type:String,required:true},
@@ -11,6 +11,6 @@ const postsSchema = new Schema({
 });
 
 // using the jSON package here
-postsSchema.plugin(toJSON);
+postSchema.plugin(toJSON);
 
-export const postsModel = model('Posts',postsSchema);
+export const postModel = model('Post',postSchema);
