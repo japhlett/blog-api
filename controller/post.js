@@ -14,8 +14,15 @@ export const addPost = async(req,res,next) =>{
 // Get all posts
 export const getPosts = async(req,res,next) =>{
     try {
-        const allPosts = await postModel.find();
-        res.status(200).send(allPosts);
+        // Get query params
+        const {limit,skip,filter} = req.query;
+        // Get all recipes from database
+        const publishedPost = await postModel
+        .find(JSON.parse(filter))
+        .limit(limit)
+        .skip(skip);
+    //   return published posts
+        res.status(200).send(publishedPost);
     } catch (error) {
         next(error);
     }
